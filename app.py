@@ -48,10 +48,10 @@ if "show_results" not in st.session_state:
 
 # PIN Authentication
 if not st.session_state.authenticated:
-    st.title("Access Required")
-    with st.form("pin_form"):
+    st.subheader(":material/key: Access Required")
+    with st.form("pin_form", border=False):
         pin_input = st.text_input("Enter PIN:", type="password")
-        pin_submit = st.form_submit_button("Submit")
+        pin_submit = st.form_submit_button("Submit", type="primary")
 
     if pin_submit:
         if pin_input == st.secrets["PIN"]:
@@ -70,7 +70,7 @@ airweave = AirweaveSDK(
 )
 
 
-st.title(":material/search: Partners' Meetings")
+st.subheader(":material/search: Partners' Meetings")
 
 # Sidebar controls
 with st.sidebar:
@@ -83,7 +83,7 @@ with st.form("search_form", border=False):
     query = st.text_input("Enter your search query:", value=st.session_state.query_input)
     col1, col2, col3 = st.columns([1,1,4], gap='small')
     with col1:
-        submit_button = st.form_submit_button(":material/search: Search")
+        submit_button = st.form_submit_button(":material/search: Search", type="primary")
     with col2:
         clear_button = st.form_submit_button(":material/clear: Clear")
     with col3:
